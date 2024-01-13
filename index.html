@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/e1fdcb0310.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/home.css">
+    <style>
+        header {
+            width: 100%;
+            position: fixed;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            transition: 0.6s;
+            z-index: 100;
+            background-color: rgb(121, 0, 0);
+            /* Çizgi rengi */
+        }
+
+
+        #menuIcon {
+            font-size: 25px;
+            color: #fff;
+            cursor: pointer;
+            margin-right: 20px;
+            display: none;
+            /* Hamburger menüyü başlangıçta gizle */
+        }
+
+        #menuIcon:hover {
+            color: black;
+            transition: 0.3s;
+        }
+
+
+        header i {
+            position: relative;
+            font-size: 35px;
+            left: 20px;
+            color: #ffff;
+        }
+
+        header.sticky {
+            background-color: rgb(121, 0, 0);
+            /* Çizgi rengi */
+            height: 70px;
+            transition: transform 0.5s all;
+        }
+
+        nav {
+            background-color: transparent;
+        }
+
+        .nav_links {
+            list-style: none;
+            background-color: transparent;
+
+        }
+
+        .nav_links li {
+            background-color: transparent;
+            display: inline-block;
+            padding: 0px 20px;
+        }
+
+        .nav_links li a {
+            background-color: transparent;
+            position: relative;
+            color: #ffff;
+
+        }
+
+
+        .nav_links li a:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -10px;
+            left: 0;
+            background-color: #ffff;
+            /* Çizgi rengi */
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.4s ease;
+
+        }
+
+
+        .nav_links li a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+            transition: transform 0.3s ease;
+
+        }
+
+
+
+
+        .cta {
+            position: relative;
+            margin-left: auto;
+            margin-right: 2%;
+            background-color: transparent;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+
+
+        #cta {
+            border: solid 1px rgb(0, 0, 0);
+            position: relative;
+            border-radius: 0;
+            width: 110px;
+            height: 50px;
+            cursor: pointer;
+            transition: color 0.4s linear;
+            color: black;
+            background-color: #000000;
+            color: #ffff;
+            z-index: 2;
+            /* .button::before'un üzerinde olması için */
+        }
+
+        #cta:hover {
+            background-color: #000000;
+            border: none;
+            color: #000000;
+            text-shadow: #c4c4c4 1px 1px 2px;
+
+        }
+
+        #cta::before {
+            content: '';
+            position: absolute;
+            width: 99%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border: solid 1px rgb(0, 0, 0);
+            background-color: #e0e0e0;
+            /* Çizgi rengi */
+            transform-origin: 0 0;
+            transition: transform 0.3s ease;
+            z-index: 1;
+            transform: scaleX(0);
+            z-index: -1;
+            /* Metnin altında olması için */
+        }
+
+        #cta:hover::before {
+            transform: scaleX(1);
+        }
+
+        #settings {
+            position: relative;
+            right: 2%;
+            font-size: 30px;
+            text-shadow: #000000 3px 3px 10px;
+        }
+
+        .content {
+            margin-top: 5%;
+            margin-bottom: 5%;
+        }
+
+        .section {
+            background-color: #ededed;
+        }
+
+
+        .btn {
+            padding: 10px 20px;
+            background-color: black;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: rgb(121, 0, 0);
+            color: #fff;
+            transition: 0.3s;
+        }
+
+
+        #carouselExampleIndicators {
+            box-shadow: 10px 10px 15px rgb(50, 50, 50);
+        }
+
+        .socials a:hover i {
+            color: black;
+            transition: 0.2s;
+            transform: scale(1.20);
+        }
+
+        .footer-content p {
+            color: #eaeaea;
+        }
+
+        @media only screen and (max-width: 1024px) {
+            section {
+                position: relative;
+                margin-top: 30%;
+                width: 100%;
+            }
+
+            .card {
+                margin-top: 15%;
+                width: 100%;
+            }
+        }
+
+
+
+        @media only screen and (max-width: 795px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                height: auto;
+            }
+
+            header.sticky {
+                height: 55px;
+            }
+
+            #cta {
+                position: relative;
+                bottom: 7px;
+            }
+
+
+            header.sticky #logout {
+                position: relative;
+                top: 2px;
+            }
+
+            #menuIcon {
+                top: 25px;
+                display: block;
+                /* Ekran küçükse Hamburger menüyü göster */
+            }
+
+            header.sticky #menuIcon {
+                top: 15px;
+            }
+
+            header.sticky .nav_links {
+                background-color: rgb(121, 0, 0);
+            }
+
+            .nav_links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav_links.active {
+                display: flex;
+            }
+
+            .nav_links li {
+                margin-bottom: 10px;
+            }
+
+            .cta {
+                margin-top: 10px;
+            }
+
+            #carouselExampleIndicators {
+                position: relative;
+                margin-top: 25%;
+                margin-bottom: 0;
+                width: 100%;
+            }
+
+
+            .section {
+                width: 100%;
+            }
+
+            .carousel-indicators {
+                position: relative;
+            }
+
+            .carousel-inner {
+                height: 50vh;
+            }
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <i class="fa-solid fa-hand-holding-heart"></i>
+        <i class="fa-solid fa-bars" id="menuIcon"></i>
+
+        <nav>
+            <ul class=" nav_links">
+                <li><a href="index.html">Anasayfa</a></li>
+                <li><a href="bagis.php">Bağış Yap</a></li>
+                <li><a href="haberler.php">Haberler</a></li>
+
+
+            </ul>
+        </nav>
+        <a class="cta" href="contact.html"><button id="cta">Bize Ulaşın</button></a>
+        <a id="settings" href="settings.php"><i class="fa-solid fa-gear fa-spin"></i></a>
+    </header>
+
+
+
+    <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="img/homeimg1.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="img/homeimg3.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="img/news4.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+    <section class="section">
+        <img src="img/homeimg4.jpg" alt="Deprem Bağışı">
+        <div class="content">
+            <h2>Geleceğini Kurtar</h2>
+            <p>Geliştirdiğimiz bağış kampanyası, gerçekleşmek üzere olan İstanbul depremi ve diğer oluşabilecek büyük
+                depremler için önlem almak ve deprem gerçekleştiğinde depremzedelere ve bölge halkı için gerekli olan
+                paranın karşılanması için bağış toplanmaktadır.
+                Önceden alınacak önlemler ve sağlanacak
+                yardımlar, gelecekteki olası depremlerde etkilenen ailelere güvence sağlamak adına kritik bir rol
+                oynayacaktır. Siz de bu projeye katılarak, gelecekteki depremzedelerin yaşamlarına dokunabilir ve onlara
+                umut olabilirsiniz.</p>
+            <p>Bağış kampanyamız, gelecekteki depremlerde evsiz kalmış ailelere güvenli barınma, temel ihtiyaçlar ve
+                psikososyal destek sunmayı hedeflemektedir. Bu kritik süreçte dayanışma içinde olmak, toplumumuzu
+                gelecekteki olası afetlere karşı güçlendirmenin bir adımıdır.</p>
+
+            <p>Unutmayın, küçük bir bağış bile büyük bir fark yaratabilir. Gelecekteki depremzedelere, belkide kendinize
+                yardım etmek ve
+                toplumumuzu güçlendirmek için siz de destek olun.</p>
+            <p>Bağışlarımız Ahbap derneğine ve gerekli kurumlara aktarılacaktır.</p>
+            <a href="bagis.php"><button class="btn">Geleceğinizi Kurtarın</button></a>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <!--  FOOTER  -->
+    <footer>
+        <div class="footer-content">
+            <h3>Geleceğini Koru</h3>
+            <p>"Geleceğini belki de bir dakika sonrını koruyor olabilirsin. Yapacağın küçük bir bağışla büyük bir fark
+                yarat!"</p>
+            <ul class="socials">
+                <li><a target="_blank" href="https://www.instagram.com/anilkayanda/">
+                        <i class="fa-brands fa-square-instagram"></i></a></li>
+                <li><a href="mailto:anilkayanda@gmail.com"><i class="fa-solid fa-envelope"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-linkedin"></a></i></li>
+                <li><a target="_blank" href="https://github.com/AnilKayanda"><i
+                            class="fa-solid fa-hand-holding-heart"></i>
+                </li>
+                <li><a target="_blank" href="https://twitter.com/anilkayanda"><i class="fa-brands fa-twitter"></i></a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>copyright &copy;2023 designed by <span>Anıl Kayanda</span></p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector("header");
+            header.classList.toggle("sticky", window.scrollY > 0);
+        })
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var menuIcon = document.getElementById('menuIcon');
+            var navLinks = document.querySelector('.nav_links');
+
+            menuIcon.addEventListener('click', function () {
+                navLinks.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
